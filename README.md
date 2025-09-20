@@ -78,9 +78,9 @@ python -m venv venv
 # 4. Gerekli kütüphaneleri yükleyin
 pip install -r requirements.txt
 
-İlk Proje
 
-# Örnek olarak, duygu analizi projesini çalıştıralım:
+# İlk Proje
+Örnek olarak, duygu analizi projesini çalıştıralım:
 cd nlp-projects/sentiment-analysis
 python main.py --text "Bu harika bir proje!"
 
