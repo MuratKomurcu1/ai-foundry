@@ -951,3 +951,623 @@ class AILabDashboard:
                 type=['png', 'jpg', 'jpeg'],
                 key="new_face"
             )
+            
+            new_face_name = st.text_input("Person's name")
+            
+            if st.button("➕ Add to Database") and new_face_image and new_face_name:
+                st.success(f"✅ Added {new_face_name} to the face database!")
+            
+            # Recognition
+            st.markdown("##### Recognize Faces")
+            
+            recognition_image = st.file_uploader(
+                "Upload image for recognition",
+                type=['png', 'jpg', 'jpeg'],
+                key="recognition"
+            )
+            
+            if recognition_image:
+                st.image(Image.open(recognition_image), caption="Recognition Image", width=300)
+                
+                if st.button("🔍 Recognize Faces"):
+                    with st.spinner("Recognizing faces..."):
+                        time.sleep(1)
+                        
+                        # Mock recognition results
+                        recognition_results = [
+                            {"name": "John Doe", "confidence": 0.94, "status": "Known"},
+                            {"name": "Unknown", "confidence": 0.0, "status": "Unknown"}
+                        ]
+                        
+                        st.markdown("### 🎯 Recognition Results")
+                        
+                        for result in recognition_results:
+                            if result["status"] == "Known":
+                                st.success(f"✅ Recognized: **{result['name']}** ({result['confidence']:.1%})")
+                            else:
+                                st.warning("❓ Unknown person detected")
+
+    def render_llm_page(self):
+        """Render LLM and chatbot page"""
+        st.markdown("# 🤖 LLM & Chatbots")
+        
+        llm_models = list(self.models['llm'].keys())
+        selected_model = st.selectbox("Select LLM Model", llm_models)
+        
+        model_info = self.models['llm'][selected_model]
+        
+        st.markdown(f"## {model_info['name']}")
+        st.markdown(f"*{model_info['description']}*")
+        
+        if model_info['status'] != 'available':
+            st.error("⚠️ This model is currently unavailable.")
+            return
+        
+        if selected_model == 'chatbot':
+            self.render_chatbot_interface()
+        elif selected_model == 'rag_system':
+            self.render_rag_interface()
+
+    def render_chatbot_interface(self):
+        """Render chatbot interface"""
+        st.markdown("### 💬 AI Chatbot")
+        
+        # Chat history
+        if 'chat_history' not in st.session_state:
+            st.session_state.chat_history = []
+        
+        # Chatbot settings
+        with st.sidebar:
+            st.markdown("### 🎛️ Chat Settings")
+            
+            personality = st.selectbox(
+                "Personality",
+                ["Professional", "Friendly", "Creative", "Technical"]
+            )
+            
+            response_length = st.selectbox(
+                "Response Length",
+                ["Short", "Medium", "Long"]
+            )
+            
+            temperature = st.slider("Creativity", 0.0, 1.0, 0.7)
+            
+            if st.button("🗑️ Clear Chat"):
+                st.session_state.chat_history = []
+                st.rerun()
+        
+        # Display chat history
+        st.markdown("### 💭 Conversation")
+        
+        # Create chat container
+        chat_container = st.container()
+        
+        with chat_container:
+            for i, message in enumerate(st.session_state.chat_history):
+                if message['role'] == 'user':
+                    st.markdown(f"""
+                    <div style="background-color: #e3f2fd; padding: 1rem; border-radius: 0.5rem; margin: 0.5rem 0;">
+                        <strong>You:</strong> {message['content']}
+                    </div>
+                    """, unsafe_allow_html=True)
+                else:
+                    st.markdown(f"""
+                    <div style="background-color: #f3e5f5; padding: 1rem; border-radius: 0.5rem; margin: 0.5rem 0;">
+                        <strong>AI:</strong> {message['content']}
+                    </div>
+                    """, unsafe_allow_html=True)
+        
+        # Chat input
+        user_input = st.text_input(
+            "Type your message:",
+            placeholder="Ask me anything...",
+            key="chat_input"
+        )
+        
+        col1, col2 = st.columns([6, 1])
+        
+        with col2:
+            send_button = st.button("📤 Send", type="primary")
+        
+        if send_button and user_input:
+            # Add user message
+            st.session_state.chat_history.append({
+                'role': 'user',
+                'content': user_input,
+                'timestamp': datetime.now()
+            })
+            
+            # Generate AI response (mock)
+            with st.spinner("AI is thinking..."):
+                time.sleep(1)
+                
+                # Mock response based on personality
+                responses = {
+                    "Professional": f"Thank you for your question about '{user_input}'. Based on my analysis, I can provide you with a comprehensive response.",
+                    "Friendly": f"Hey there! That's a great question about '{user_input}'. I'd be happy to help you with that!",
+                    "Creative": f"What an interesting question about '{user_input}'! Let me think creatively about this...",
+                    "Technical": f"Analyzing your query regarding '{user_input}'. Here's a detailed technical breakdown:"
+                }
+                
+                ai_response = responses[personality]
+                
+                # Add AI response
+                st.session_state.chat_history.append({
+                    'role': 'assistant',
+                    'content': ai_response,
+                    'timestamp': datetime.now()
+                })
+            
+            st.rerun()
+        
+        # Chat statistics
+        if st.session_state.chat_history:
+            st.markdown("---")
+            st.markdown("### 📊 Chat Statistics")
+            
+            total_messages = len(st.session_state.chat_history)
+            user_messages = len([m for m in st.session_state.chat_history if m['role'] == 'user'])
+            ai_messages = len([m for m in st.session_state.chat_history if m['role'] == 'assistant'])
+            
+            col1, col2, col3 = st.columns(3)
+            with col1:
+                st.metric("Total Messages", total_messages)
+            with col2:
+                st.metric("Your Messages", user_messages)
+            with col3:
+                st.metric("AI Messages", ai_messages)
+
+    def render_rag_interface(self):
+        """Render RAG system interface"""
+        st.markdown("### 🔍 RAG System - Knowledge-Based Q&A")
+        
+        st.info("RAG (Retrieval-Augmented Generation) combines information retrieval with text generation for accurate, knowledge-based responses.")
+        
+        tab1, tab2 = st.tabs(["Query Documents", "Manage Knowledge Base"])
+        
+        with tab1:
+            # Knowledge base selection
+            knowledge_bases = ["General Knowledge", "Technical Documentation", "Company Policies", "Product Manuals"]
+            selected_kb = st.selectbox("Select Knowledge Base", knowledge_bases)
+            
+            # Query input
+            query = st.text_area(
+                "Enter your question:",
+                placeholder="Ask a question about the selected knowledge base...",
+                height=100
+            )
+            
+            # RAG settings
+            col1, col2 = st.columns(2)
+            with col1:
+                retrieval_k = st.slider("Retrieve top K documents", 1, 10, 5)
+                similarity_threshold = st.slider("Similarity threshold", 0.0, 1.0, 0.7)
+            
+            with col2:
+                include_sources = st.checkbox("Include source citations", value=True)
+                rerank_results = st.checkbox("Re-rank results", value=True)
+            
+            if st.button("🔍 Query Knowledge Base", type="primary") and query:
+                with st.spinner("Searching knowledge base and generating response..."):
+                    time.sleep(2)
+                    
+                    # Mock RAG response
+                    rag_response = {
+                        'answer': f"Based on the available documentation in {selected_kb}, here's what I found regarding your question: '{query}'. The system retrieved relevant information from multiple sources to provide you with this comprehensive answer.",
+                        'confidence': np.random.uniform(0.7, 0.95),
+                        'sources': [
+                            {
+                                'title': 'Document 1: Technical Overview',
+                                'content': 'Relevant excerpt from the first document...',
+                                'similarity': 0.92,
+                                'source': 'tech_docs/overview.pdf'
+                            },
+                            {
+                                'title': 'Document 2: Implementation Guide',
+                                'content': 'Another relevant excerpt...',
+                                'similarity': 0.87,
+                                'source': 'guides/implementation.md'
+                            }
+                        ]
+                    }
+                    
+                    # Display answer
+                    st.markdown("### 💡 Generated Answer")
+                    st.markdown(f"""
+                    <div class="success-box">
+                        {rag_response['answer']}
+                    </div>
+                    """, unsafe_allow_html=True)
+                    
+                    # Answer metrics
+                    col1, col2, col3 = st.columns(3)
+                    with col1:
+                        st.metric("Confidence", f"{rag_response['confidence']:.1%}")
+                    with col2:
+                        st.metric("Sources Used", len(rag_response['sources']))
+                    with col3:
+                        st.metric("Knowledge Base", selected_kb)
+                    
+                    # Source citations
+                    if include_sources:
+                        st.markdown("### 📚 Source Documents")
+                        
+                        for i, source in enumerate(rag_response['sources']):
+                            with st.expander(f"Source {i+1}: {source['title']} (Similarity: {source['similarity']:.1%})"):
+                                st.markdown(f"**Content:** {source['content']}")
+                                st.markdown(f"**Source:** `{source['source']}`")
+                    
+                    # Relevance visualization
+                    st.markdown("### 📊 Document Relevance")
+                    
+                    source_df = pd.DataFrame(rag_response['sources'])
+                    
+                    fig = px.bar(
+                        source_df, 
+                        x='title', 
+                        y='similarity',
+                        title="Document Similarity Scores",
+                        color='similarity',
+                        color_continuous_scale="viridis"
+                    )
+                    
+                    fig.update_xaxes(tickangle=45)
+                    st.plotly_chart(fig, use_container_width=True)
+        
+        with tab2:
+            st.markdown("#### 📁 Knowledge Base Management")
+            
+            # Upload documents
+            st.markdown("##### Upload New Documents")
+            
+            uploaded_docs = st.file_uploader(
+                "Upload documents to knowledge base",
+                type=['pdf', 'txt', 'md', 'docx'],
+                accept_multiple_files=True
+            )
+            
+            if uploaded_docs:
+                st.write(f"Selected {len(uploaded_docs)} files:")
+                for doc in uploaded_docs:
+                    st.write(f"- {doc.name}")
+                
+                if st.button("📤 Upload to Knowledge Base"):
+                    with st.spinner("Processing and indexing documents..."):
+                        time.sleep(2)
+                        st.success(f"✅ Successfully uploaded and indexed {len(uploaded_docs)} documents!")
+            
+            # Knowledge base statistics
+            st.markdown("##### 📊 Knowledge Base Statistics")
+            
+            kb_stats = {
+                'Total Documents': 1247,
+                'Total Chunks': 8934,
+                'Average Similarity': 0.847,
+                'Last Updated': '2024-01-15',
+                'Index Size': '2.3 GB'
+            }
+            
+            for stat, value in kb_stats.items():
+                col1, col2 = st.columns([1, 1])
+                with col1:
+                    st.write(f"**{stat}:**")
+                with col2:
+                    st.write(str(value))
+
+    def render_data_explorer_page(self):
+        """Render data exploration page"""
+        st.markdown("# 📊 Data Explorer")
+        
+        st.markdown("Explore and analyze your datasets with interactive visualizations.")
+        
+        # Sample data or file upload
+        data_source = st.radio("Data Source", ["Sample Data", "Upload File", "Connect Database"])
+        
+        df = None
+        
+        if data_source == "Sample Data":
+            # Generate sample data
+            sample_datasets = {
+                "Sales Data": pd.DataFrame({
+                    'date': pd.date_range('2024-01-01', periods=100, freq='D'),
+                    'sales': np.random.normal(1000, 200, 100),
+                    'category': np.random.choice(['A', 'B', 'C'], 100),
+                    'region': np.random.choice(['North', 'South', 'East', 'West'], 100)
+                }),
+                "Customer Data": pd.DataFrame({
+                    'age': np.random.normal(35, 10, 500),
+                    'income': np.random.normal(50000, 15000, 500),
+                    'satisfaction': np.random.uniform(1, 5, 500),
+                    'segment': np.random.choice(['Premium', 'Standard', 'Basic'], 500)
+                })
+            }
+            
+            selected_dataset = st.selectbox("Select Sample Dataset", list(sample_datasets.keys()))
+            df = sample_datasets[selected_dataset]
+        
+        elif data_source == "Upload File":
+            uploaded_file = st.file_uploader(
+                "Upload CSV or Excel file",
+                type=['csv', 'xlsx', 'xls']
+            )
+            
+            if uploaded_file:
+                try:
+                    if uploaded_file.name.endswith('.csv'):
+                        df = pd.read_csv(uploaded_file)
+                    else:
+                        df = pd.read_excel(uploaded_file)
+                except Exception as e:
+                    st.error(f"Error loading file: {e}")
+        
+        elif data_source == "Connect Database":
+            st.info("Database connection feature coming soon!")
+        
+        if df is not None:
+            # Dataset overview
+            st.markdown("### 📋 Dataset Overview")
+            
+            col1, col2, col3, col4 = st.columns(4)
+            
+            with col1:
+                st.metric("Rows", len(df))
+            with col2:
+                st.metric("Columns", len(df.columns))
+            with col3:
+                st.metric("Missing Values", df.isnull().sum().sum())
+            with col4:
+                st.metric("Memory Usage", f"{df.memory_usage(deep=True).sum() / 1024:.1f} KB")
+            
+            # Data preview
+            st.markdown("### 👀 Data Preview")
+            st.dataframe(df.head(10), use_container_width=True)
+            
+            # Column analysis
+            st.markdown("### 📊 Column Analysis")
+            
+            numeric_columns = df.select_dtypes(include=[np.number]).columns.tolist()
+            categorical_columns = df.select_dtypes(include=['object']).columns.tolist()
+            
+            if numeric_columns:
+                st.markdown("#### 🔢 Numeric Columns")
+                
+                selected_numeric = st.multiselect(
+                    "Select numeric columns to analyze",
+                    numeric_columns,
+                    default=numeric_columns[:3]
+                )
+                
+                if selected_numeric:
+                    # Statistics
+                    st.markdown("##### Descriptive Statistics")
+                    st.dataframe(df[selected_numeric].describe(), use_container_width=True)
+                    
+                    # Distribution plots
+                    st.markdown("##### Distribution Plots")
+                    
+                    for col in selected_numeric:
+                        fig = px.histogram(
+                            df, x=col,
+                            title=f"Distribution of {col}",
+                            marginal="box"
+                        )
+                        st.plotly_chart(fig, use_container_width=True)
+            
+            if categorical_columns:
+                st.markdown("#### 📝 Categorical Columns")
+                
+                selected_categorical = st.selectbox(
+                    "Select categorical column to analyze",
+                    categorical_columns
+                )
+                
+                if selected_categorical:
+                    # Value counts
+                    value_counts = df[selected_categorical].value_counts()
+                    
+                    col1, col2 = st.columns(2)
+                    
+                    with col1:
+                        st.markdown("##### Value Counts")
+                        st.dataframe(value_counts.reset_index(), use_container_width=True)
+                    
+                    with col2:
+                        st.markdown("##### Distribution")
+                        fig = px.pie(
+                            values=value_counts.values,
+                            names=value_counts.index,
+                            title=f"Distribution of {selected_categorical}"
+                        )
+                        st.plotly_chart(fig, use_container_width=True)
+            
+            # Correlation analysis
+            if len(numeric_columns) > 1:
+                st.markdown("### 🔗 Correlation Analysis")
+                
+                correlation_matrix = df[numeric_columns].corr()
+                
+                fig = px.imshow(
+                    correlation_matrix,
+                    title="Correlation Matrix",
+                    color_continuous_scale="RdBu",
+                    aspect="auto"
+                )
+                
+                st.plotly_chart(fig, use_container_width=True)
+            
+            # Custom visualization
+            st.markdown("### 🎨 Custom Visualization")
+            
+            viz_type = st.selectbox(
+                "Visualization Type",
+                ["Scatter Plot", "Line Chart", "Bar Chart", "Box Plot"]
+            )
+            
+            if viz_type == "Scatter Plot" and len(numeric_columns) >= 2:
+                col1, col2 = st.columns(2)
+                with col1:
+                    x_axis = st.selectbox("X-axis", numeric_columns)
+                with col2:
+                    y_axis = st.selectbox("Y-axis", [col for col in numeric_columns if col != x_axis])
+                
+                color_by = st.selectbox("Color by", ["None"] + categorical_columns)
+                
+                if x_axis and y_axis:
+                    fig = px.scatter(
+                        df, x=x_axis, y=y_axis,
+                        color=color_by if color_by != "None" else None,
+                        title=f"{y_axis} vs {x_axis}"
+                    )
+                    st.plotly_chart(fig, use_container_width=True)
+
+    def render_analytics_page(self):
+        """Render analytics page"""
+        st.markdown("# 📈 Analytics")
+        
+        st.markdown("Monitor system performance, model accuracy, and usage statistics.")
+        
+        # Time range selector
+        time_range = st.selectbox(
+            "Time Range",
+            ["Last 24 Hours", "Last 7 Days", "Last 30 Days", "Last 90 Days"]
+        )
+        
+        # Generate mock analytics data
+        dates = pd.date_range(end=datetime.now(), periods=30, freq='D')
+        analytics_data = pd.DataFrame({
+            'date': dates,
+            'requests': np.random.poisson(100, 30),
+            'accuracy': np.random.normal(0.92, 0.02, 30),
+            'response_time': np.random.normal(1.5, 0.3, 30),
+            'errors': np.random.poisson(2, 30)
+        })
+        
+        # Key metrics
+        st.markdown("### 📊 Key Metrics")
+        
+        col1, col2, col3, col4 = st.columns(4)
+        
+        with col1:
+            total_requests = analytics_data['requests'].sum()
+            st.metric(
+                "Total Requests",
+                f"{total_requests:,}",
+                delta=f"+{np.random.randint(50, 200)}"
+            )
+        
+        with col2:
+            avg_accuracy = analytics_data['accuracy'].mean()
+            st.metric(
+                "Average Accuracy",
+                f"{avg_accuracy:.1%}",
+                delta=f"+{np.random.uniform(0.5, 2.0):.1f}%"
+            )
+        
+        with col3:
+            avg_response_time = analytics_data['response_time'].mean()
+            st.metric(
+                "Avg Response Time",
+                f"{avg_response_time:.2f}s",
+                delta=f"-{np.random.uniform(0.1, 0.3):.2f}s"
+            )
+        
+        with col4:
+            total_errors = analytics_data['errors'].sum()
+            error_rate = total_errors / total_requests * 100
+            st.metric(
+                "Error Rate",
+                f"{error_rate:.2f}%",
+                delta=f"-{np.random.uniform(0.1, 0.5):.1f}%"
+            )
+        
+        # Charts
+        st.markdown("### 📈 Trends")
+        
+        tab1, tab2, tab3 = st.tabs(["Usage", "Performance", "Errors"])
+        
+        with tab1:
+            fig = px.line(
+                analytics_data, x='date', y='requests',
+                title="Daily Request Volume",
+                markers=True
+            )
+            st.plotly_chart(fig, use_container_width=True)
+        
+        with tab2:
+            # Performance metrics
+            fig = make_subplots(
+                rows=2, cols=1,
+                subplot_titles=("Model Accuracy", "Response Time"),
+                vertical_spacing=0.1
+            )
+            
+            fig.add_trace(
+                go.Scatter(x=analytics_data['date'], y=analytics_data['accuracy'],
+                          mode='lines+markers', name='Accuracy'),
+                row=1, col=1
+            )
+            
+            fig.add_trace(
+                go.Scatter(x=analytics_data['date'], y=analytics_data['response_time'],
+                          mode='lines+markers', name='Response Time'),
+                row=2, col=1
+            )
+            
+            fig.update_layout(height=500, title="Performance Metrics Over Time")
+            st.plotly_chart(fig, use_container_width=True)
+        
+        with tab3:
+            fig = px.bar(
+                analytics_data, x='date', y='errors',
+                title="Daily Error Count"
+            )
+            st.plotly_chart(fig, use_container_width=True)
+        
+        # Model performance breakdown
+        st.markdown("### 🎯 Model Performance")
+        
+        model_performance = pd.DataFrame({
+            'Model': ['Sentiment Analysis', 'Image Classification', 'Object Detection', 'Face Recognition'],
+            'Accuracy': [0.94, 0.91, 0.88, 0.96],
+            'Usage': [450, 320, 180, 240],
+            'Avg Response Time': [0.8, 2.1, 3.2, 1.4]
+        })
+        
+        fig = px.scatter(
+            model_performance, 
+            x='Usage', y='Accuracy',
+            size='Avg Response Time',
+            color='Model',
+            title="Model Performance vs Usage"
+        )
+        
+        st.plotly_chart(fig, use_container_width=True)
+
+    def run(self):
+        """Run the dashboard application"""
+        self.render_sidebar()
+        
+        # Route to appropriate page
+        if st.session_state.page == 'Home':
+            self.render_home_page()
+        elif st.session_state.page == 'NLP Models':
+            self.render_nlp_page()
+        elif st.session_state.page == 'Computer Vision':
+            self.render_computer_vision_page()
+        elif st.session_state.page == 'LLM & Chatbots':
+            self.render_llm_page()
+        elif st.session_state.page == 'Data Explorer':
+            self.render_data_explorer_page()
+        elif st.session_state.page == 'Analytics':
+            self.render_analytics_page()
+        elif st.session_state.page == 'Settings':
+            st.markdown("# ⚙️ Settings")
+            st.info("Settings page - Configure system preferences, API keys, and model parameters.")
+        else:
+            st.markdown("# 🔧 Model Training")
+            st.info("Model training interface - Train custom models with your data.")
+
+# Run the dashboard
+if __name__ == "__main__":
+    dashboard = AILabDashboard()
+    dashboard.run()
