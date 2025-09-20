@@ -9,78 +9,92 @@
 
 Bu repository, yapay zeka alanında öğrenmek isteyenler için kapsamlı, pratik ve öğretici projeler içerir. Her seviyeden geliştiricinin faydalanabileceği gerçek dünya örnekleri ve detaylı açıklamalar sunar.
 
-## 📚 İçerik
+📚 İçerik
 
-### 🔤 Natural Language Processing (NLP)
-- **[Sentiment Analysis](nlp-projects/sentiment-analysis/)** - Duygu analizi (Türkçe destekli)
-- **[Text Classification](nlp-projects/text-classification/)** - Metin sınıflandırma
-- **[Named Entity Recognition](nlp-projects/named-entity-recognition/)** - Varlık tanıma
-- **[Text Summarization](nlp-projects/text-summarization/)** - Metin özetleme
-- **[BERT Fine-tuning](nlp-projects/bert-fine-tuning/)** - BERT model ince ayarı
+ computer-vision/
+├── 🖼️ Image Classification
+├── 🎯 Object Detection
+└── 👤 Face Recognition
 
-### 🤖 Large Language Models (LLM)
-- **[LLM Fine-tuning Guide](llm-projects/fine-tuning-guide/)** - LLM ince ayar rehberi
-- **[Prompt Engineering](llm-projects/prompt-engineering/)** - Prompt mühendisliği
-- **[RAG Implementation](llm-projects/rag-implementation/)** - RAG sistemi kurulumu
-- **[Custom Chatbot](llm-projects/custom-chatbot/)** - Özel chatbot geliştirme
-- **[Local LLM Setup](llm-projects/local-llm-setup/)** - Yerel LLM kurulumu
+ llm-projects/
+├── 💬 Custom Chatbot
+└── 🔎 RAG Implementation
 
-### 🔧 Model Context Protocol (MCP)
-- **[Basic MCP Server](mcp-projects/basic-mcp-server/)** - Temel MCP sunucu
-- **[Database Connector](mcp-projects/database-connector/)** - Veritabanı bağlantısı
-- **[API Integration](mcp-projects/api-integration/)** - API entegrasyonu
-- **[Claude Integration](mcp-projects/claude-integration/)** - Claude entegrasyonu
+ mcp-projects/
+├── ⚙️ Basic MCP Server
+├── 🖥️ Demo MCP Server
+├── 📄 File MCP
+└── 📧 MCP Mail
 
-### 👁️ Computer Vision
-- **[Image Classification](computer-vision/image-classification/)** - Görüntü sınıflandırma
-- **[Object Detection](computer-vision/object-detection/)** - Nesne tespiti
-- **[Face Recognition](computer-vision/face-recognition/)** - Yüz tanıma
-- **[Style Transfer](computer-vision/style-transfer/)** - Stil transferi
+ ml-dl-fundamentals/
+├── 🎓 Admission Predict
+├── 🩺 Advanced Hyperparameter Optimization on Diabetes Dataset
+├── 💉 Binary Classification with TensorFlow on Diabetes Dataset
+├── 🌊 Deep Learning Algorithm Flow
+├── 📊 Example CSV
+├── 🏠 Housing Prices Regression
+├── 🖼️ Image Classification with CNN on CIFAR-10
+├── 🧠 Manuel Implementation of Two-Layer Neural Network
+├── 🕸️ Neural Networks
+├── 🐧 Penguins Classification
+└── 🗑️ Transfer Learning on Garbage Dataset
 
-### 📊 Machine Learning Fundamentals
-- **[Regression Models](ml-fundamentals/regression-models/)** - Regresyon modelleri
-- **[Clustering Algorithms](ml-fundamentals/clustering/)** - Kümeleme algoritmaları
-- **[Neural Networks](ml-fundamentals/neural-networks/)** - Sinir ağları temelleri
-- **[Feature Engineering](ml-fundamentals/feature-engineering/)** - Özellik mühendisliği
+ nlp-projects/
+├── 😊 Sentiment Analysis
+├── 📑 Text Classification
+└── ✍️ Text Summarization
 
-## 🚀 Hızlı Başlangıç
+ reinforcement-learning/
+└── 🤖 Q-Learning
 
-### Önkoşullar
-- Python 3.8+
-- Git
-- Virtual environment (önerilen)
+ web-interfaces/
+└── 🌐 Streamlit Apps
 
-### Kurulum
-```bash
-# Repository'yi klonlayın
-git clone https://github.com/MuratKomurcu1/ai-foundry.git
-cd ai-lab
+🚀 Hızlı Başlangıç
 
-# Virtual environment oluşturun
+Önkoşullar
+
+* Python 3.8+
+* Git
+* Virtual environment (önerilir)
+
+Kurulum
+
+# 1. Repository'yi klonlayın (URL'yi kendi repository adresinizle güncelleyin)
+git clone https://github.com/KULLANICI_ADINIZ/ai-foundry-main.git
+
+# 2. Proje dizinine gidin
+cd ai-foundry-main
+
+# 3. Sanal ortamı (virtual environment) oluşturun ve aktif edin
 python -m venv venv
-source venv/bin/activate  # Linux/Mac
-# venv\Scripts\activate  # Windows
 
-# Temel gereksinimleri yükleyin
+# Windows için:
+# venv\Scripts\activate
+
+# Linux/Mac için:
+# source venv/bin/activate
+
+# 4. Gerekli kütüphaneleri yükleyin
 pip install -r requirements.txt
-```
 
-### İlk Proje
-```bash
-# Sentiment analysis projesini deneyin
+İlk Proje
+
+# Örnek olarak, duygu analizi projesini çalıştıralım:
 cd nlp-projects/sentiment-analysis
 python main.py --text "Bu harika bir proje!"
-```
 
-## 📋 Proje Seviyeleri
+📋 Proje Seviyeleri
 
 | Seviye | Açıklama | Örnekler |
-|--------|----------|----------|
-| 🟢 **Başlangıç** | Temel kavramlar ve basit implementasyonlar | Text classification, Basic regression |
-| 🟡 **Orta** | Daha karmaşık modeller ve teknikler | BERT fine-tuning, Object detection |
-| 🔴 **İleri** | Araştırma düzeyinde projeler | Custom architectures, Advanced RAG |
+| :--- | :--- | :--- |
+| 🟢 **Başlangıç** | Temel kavramlar ve basit implementasyonlar | `Penguins Classification`, `Basic MCP Server` |
+| 🟡 **Orta** | Daha karmaşık modeller ve teknikler | `Object Detection`, `RAG Implementation` |
+| 🔴 **İleri** | Kapsamlı ve özelleştirilmiş projeler | `Transfer Learning on Garbage Dataset` |
 
-## 🛠️ Teknoloji Stack
+
+
+## 🛠️ Teknoloji Yığını
 
 - **Python Libraries**: PyTorch, TensorFlow, Transformers, scikit-learn
 - **Data Processing**: pandas, numpy, matplotlib, seaborn
@@ -91,22 +105,19 @@ python main.py --text "Bu harika bir proje!"
 ## 📖 Öğrenme Yolu
 
 ### Yeni Başlayanlar İçin
-1. [ML Fundamentals](ml-fundamentals/) bölümünden başlayın
+1. [ML Fundamentals](ml-dl-fundamentals/) bölümünden başlayın
 2. [Basic NLP](nlp-projects/text-classification/) projelerini deneyin
 3. [Computer Vision](computer-vision/image-classification/) temellerini öğrenin
 
 ### İleri Seviye
-1. [LLM Fine-tuning](llm-projects/fine-tuning-guide/) tekniklerini öğrenin
 2. [RAG Implementation](llm-projects/rag-implementation/) ile pratik yapın
 3. [MCP Projects](mcp-projects/) ile modern protokolleri keşfedin
 
 
 ## 🏆 Öne Çıkan Özellikler
-
-- ✅ **Kapsamlı Dokümantasyon**: Her proje için detaylı açıklamalar
-- ✅ **Gerçek Dünya Örnekleri**: Pratik uygulamalar
-- ✅ **Türkçe Desteği**: Yerel dil modelleri ve örnekler
-- ✅ **Modern Teknolojiler**: En güncel AI teknolojileri
-- ✅ **Beginner Friendly**: Yeni başlayanlar için uygun
-- ✅ **Production Ready**: Gerçek projelerde kullanılabilir kod
+✅ Kapsamlı Dokümantasyon: Her proje için detaylı açıklamalar ve kod yorumları.
+✅ Gerçek Dünya Örnekleri: Teorik bilgiyi pratiğe döken, uygulanabilir senaryolar.
+✅ Türkçe Desteği: NLP projelerinde Türkçe dil modelleri ve veri setleri üzerine çalışmalar.
+✅ Modern Teknolojiler: Sektörde kullanılan en güncel yapay zeka araçları ve kütüphaneleri.
+✅ Modüler Yapı: Projeler arası geçişi ve kodun yeniden kullanımını kolaylaştıran düzenli yapı.
 
