@@ -13,42 +13,36 @@ Bu repository, yapay zeka alanında öğrenmek isteyenler için kapsamlı, prati
 
 ai-foundry-main/
 ├── 👁️ computer-vision/
-│   ├── 🖼️ image-classification
-│   ├── 🎯 object-detection
-│   └── 👤 face-recognition
-│
+│   ├── 🖼️ image-classification/
+│   ├── 🎯 object-detection/
+│   └── 👤 face-recognition/
 ├── 🤖 llm-projects/
-│   ├── 💬 custom-chatbot
-│   └── 🔎 rag-implementation
-│
+│   ├── 💬 custom-chatbot/
+│   └── 🔎 rag-implementation/
 ├── 🔧 mcp-projects/
-│   ├── ⚙️ basic-mcp-server
-│   ├── 🖥️ demo-mcp-server
-│   ├── 📄 file-mcp
-│   └── 📧 mcp_mail
-│
+│   ├── ⚙️ basic-mcp-server/
+│   ├── 🖥️ demo-mcp-server/
+│   ├── 📄 file-mcp/
+│   └── 📧 mcp_mail/
 ├── 📊 ml-dl-fundamentals/
-│   ├── 🎓 admission_Predict
-│   ├── 🩺 advanced Hyperparameter Optimization on Diabetes Dataset
-│   ├── 💉 binary Classification with TensorFlow on Diabetes Dataset
-│   ├── 🌊 deep_learning_algorithm_flow
-│   ├── 🏠 housing_prices_regression
-│   ├── 🖼️ Image Classification with CNN on CIFAR-10
-│   ├── 🧠 manuel Implementation of Two-Layer Neural Network
-│   ├── 🕸️ neural-networks
-│   ├── 🐧 penguins_classification
-│   └── 🗑️ transfer Learning on Garbage Dataset
-│
+│   ├── 🎓 admission_predict/
+│   ├── 🩺 hyperparameter-optimization-diabetes/
+│   ├── 💉 binary-classification-tensorflow-diabetes/
+│   ├── 🌊 deep-learning-algorithm-flow/
+│   ├── 🏠 housing-prices-regression/
+│   ├── 🖼️ image-classification-cnn-cifar10/
+│   ├── 🧠 manual-neural-network-implementation/
+│   ├── 🕸️ neural-networks/
+│   ├── 🐧 penguins-classification/
+│   └── 🗑️ transfer-learning-garbage-dataset/
 ├── 🔤 nlp-projects/
-│   ├── 😊 sentiment-analysis
-│   ├── 📑 text-classification
-│   └── ✍️ text-summarization
-│
+│   ├── 😊 sentiment-analysis/
+│   ├── 📑 text-classification/
+│   └── ✍️ text-summarization/
 ├── 🦾 reinforcement-learning/
-│   └── 🤖 q-learning
-│
+│   └── 🤖 q-learning/
 └── 🌐 web-interfaces/
-└── 📈 streamlit-apps
+    └── 📈 streamlit-apps/
 
 🚀 Hızlı Başlangıç
 
