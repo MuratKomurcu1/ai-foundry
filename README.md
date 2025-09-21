@@ -59,8 +59,8 @@ Bu repository, yapay zeka alanında öğrenmek isteyenler için kapsamlı, prati
 
 Kurulum
 
-1. Repository'yi klonlayın (URL'yi kendi repository adresinizle güncelleyin)
-git clone https://github.com/KULLANICI_ADINIZ/ai-foundry-main.git
+1. Repository'yi klonlayın 
+git clone https://github.com/MuratKomurcu1/ai-foundry-main.git
 
 2. Proje dizinine gidin
 cd ai-foundry-main
