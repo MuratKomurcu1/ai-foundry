@@ -4,8 +4,7 @@
 
 **Yapay Zeka öğrenmek ve uygulamak için kapsamlı, öğretici proje koleksiyonu**
 
-
-## 🎯 Proje Amacı
+🎯 Proje Amacı
 
 Bu repository, yapay zeka alanında öğrenmek isteyenler için kapsamlı, pratik ve öğretici projeler içerir. Her seviyeden geliştiricinin faydalanabileceği gerçek dünya örnekleri ve detaylı açıklamalar sunar.
 
@@ -60,26 +59,26 @@ Bu repository, yapay zeka alanında öğrenmek isteyenler için kapsamlı, prati
 
 Kurulum
 
-# 1. Repository'yi klonlayın (URL'yi kendi repository adresinizle güncelleyin)
+1. Repository'yi klonlayın (URL'yi kendi repository adresinizle güncelleyin)
 git clone https://github.com/KULLANICI_ADINIZ/ai-foundry-main.git
 
-# 2. Proje dizinine gidin
+2. Proje dizinine gidin
 cd ai-foundry-main
 
-# 3. Sanal ortamı (virtual environment) oluşturun ve aktif edin
+3. Sanal ortamı (virtual environment) oluşturun ve aktif edin
 python -m venv venv
 
-# Windows için:
-# venv\Scripts\activate
+Windows için:
+venv\Scripts\activate
 
-# Linux/Mac için:
-# source venv/bin/activate
+Linux/Mac için:
+source venv/bin/activate
 
-# 4. Gerekli kütüphaneleri yükleyin
+4. Gerekli kütüphaneleri yükleyin
 pip install -r requirements.txt
 
 
-# İlk Proje
+İlk Proje
 Örnek olarak, duygu analizi projesini çalıştıralım:
 cd nlp-projects/sentiment-analysis
 python main.py --text "Bu harika bir proje!"
@@ -94,7 +93,7 @@ python main.py --text "Bu harika bir proje!"
 
 
 
-## 🛠️ Teknoloji Yığını
+🛠️ Teknoloji Yığını
 
 - **Python Libraries**: PyTorch, TensorFlow, Transformers, scikit-learn
 - **Data Processing**: pandas, numpy, matplotlib, seaborn
@@ -102,19 +101,19 @@ python main.py --text "Bu harika bir proje!"
 - **Computer Vision**: OpenCV, PIL, torchvision
 - **MLOps**: MLflow, Weights & Biases, Docker
 
-## 📖 Öğrenme Yolu
+📖 Öğrenme Yolu
 
-### Yeni Başlayanlar İçin
+Yeni Başlayanlar İçin
 1. [ML Fundamentals](ml-dl-fundamentals/) bölümünden başlayın
 2. [Basic NLP](nlp-projects/text-classification/) projelerini deneyin
 3. [Computer Vision](computer-vision/image-classification/) temellerini öğrenin
 
-### İleri Seviye
+İleri Seviye
 2. [RAG Implementation](llm-projects/rag-implementation/) ile pratik yapın
 3. [MCP Projects](mcp-projects/) ile modern protokolleri keşfedin
 
 
-## 🏆 Öne Çıkan Özellikler
+🏆 Öne Çıkan Özellikler
 ✅ Kapsamlı Dokümantasyon: Her proje için detaylı açıklamalar ve kod yorumları.
 ✅ Gerçek Dünya Örnekleri: Teorik bilgiyi pratiğe döken, uygulanabilir senaryolar.
 ✅ Türkçe Desteği: NLP projelerinde Türkçe dil modelleri ve veri setleri üzerine çalışmalar.
