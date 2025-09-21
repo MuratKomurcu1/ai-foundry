@@ -8,46 +8,47 @@
 
 Bu repository, yapay zeka alanında öğrenmek isteyenler için kapsamlı, pratik ve öğretici projeler içerir. Her seviyeden geliştiricinin faydalanabileceği gerçek dünya örnekleri ve detaylı açıklamalar sunar.
 
-##📚 İçerik
 
- computer-vision/
-├── 🖼️ Image Classification
-├── 🎯 Object Detection
-└── 👤 Face Recognition
+## 📚 Proje İçeriği ve Yapısı
 
- llm-projects/
-├── 💬 Custom Chatbot
-└── 🔎 RAG Implementation
-
- mcp-projects/
-├── ⚙️ Basic MCP Server
-├── 🖥️ Demo MCP Server
-├── 📄 File MCP
-└── 📧 MCP Mail
-
- ml-dl-fundamentals/
-├── 🎓 Admission Predict
-├── 🩺 Advanced Hyperparameter Optimization on Diabetes Dataset
-├── 💉 Binary Classification with TensorFlow on Diabetes Dataset
-├── 🌊 Deep Learning Algorithm Flow
-├── 📊 Example CSV
-├── 🏠 Housing Prices Regression
-├── 🖼️ Image Classification with CNN on CIFAR-10
-├── 🧠 Manuel Implementation of Two-Layer Neural Network
-├── 🕸️ Neural Networks
-├── 🐧 Penguins Classification
-└── 🗑️ Transfer Learning on Garbage Dataset
-
- nlp-projects/
-├── 😊 Sentiment Analysis
-├── 📑 Text Classification
-└── ✍️ Text Summarization
-
- reinforcement-learning/
-└── 🤖 Q-Learning
-
- web-interfaces/
-└── 🌐 Streamlit Apps
+ai-foundry-main/
+├── 👁️ computer-vision/
+│   ├── 🖼️ image-classification
+│   ├── 🎯 object-detection
+│   └── 👤 face-recognition
+│
+├── 🤖 llm-projects/
+│   ├── 💬 custom-chatbot
+│   └── 🔎 rag-implementation
+│
+├── 🔧 mcp-projects/
+│   ├── ⚙️ basic-mcp-server
+│   ├── 🖥️ demo-mcp-server
+│   ├── 📄 file-mcp
+│   └── 📧 mcp_mail
+│
+├── 📊 ml-dl-fundamentals/
+│   ├── 🎓 admission_Predict
+│   ├── 🩺 advanced Hyperparameter Optimization on Diabetes Dataset
+│   ├── 💉 binary Classification with TensorFlow on Diabetes Dataset
+│   ├── 🌊 deep_learning_algorithm_flow
+│   ├── 🏠 housing_prices_regression
+│   ├── 🖼️ Image Classification with CNN on CIFAR-10
+│   ├── 🧠 manuel Implementation of Two-Layer Neural Network
+│   ├── 🕸️ neural-networks
+│   ├── 🐧 penguins_classification
+│   └── 🗑️ transfer Learning on Garbage Dataset
+│
+├── 🔤 nlp-projects/
+│   ├── 😊 sentiment-analysis
+│   ├── 📑 text-classification
+│   └── ✍️ text-summarization
+│
+├── 🦾 reinforcement-learning/
+│   └── 🤖 q-learning
+│
+└── 🌐 web-interfaces/
+└── 📈 streamlit-apps
 
 🚀 Hızlı Başlangıç
 
