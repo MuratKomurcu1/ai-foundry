@@ -9,40 +9,50 @@
 Bu repository, yapay zeka alanında öğrenmek isteyenler için kapsamlı, pratik ve öğretici projeler içerir. Her seviyeden geliştiricinin faydalanabileceği gerçek dünya örnekleri ve detaylı açıklamalar sunar.
 
 
-## 📚 Proje İçeriği ve Yapısı
 
-ai-foundry-main/                                                                                                                                                                             
-├── 👁️ computer-vision/                             
-│   ├── 🖼️ image-classification/
-│   ├── 🎯 object-detection/
-│   └── 👤 face-recognition/
-├── 🤖 llm-projects/
-│   ├── 💬 custom-chatbot/
-│   └── 🔎 rag-implementation/
-├── 🔧 mcp-projects/
-│   ├── ⚙️ basic-mcp-server/
-│   ├── 🖥️ demo-mcp-server/
-│   ├── 📄 file-mcp/
-│   └── 📧 mcp_mail/
-├── 📊 ml-dl-fundamentals/
-│   ├── 🎓 admission_predict/
-│   ├── 🩺 hyperparameter-optimization-diabetes/
-│   ├── 💉 binary-classification-tensorflow-diabetes/
-│   ├── 🌊 deep-learning-algorithm-flow/
-│   ├── 🏠 housing-prices-regression/
-│   ├── 🖼️ image-classification-cnn-cifar10/
-│   ├── 🧠 manual-neural-network-implementation/
-│   ├── 🕸️ neural-networks/
-│   ├── 🐧 penguins-classification/
-│   └── 🗑️ transfer-learning-garbage-dataset/
-├── 🔤 nlp-projects/
-│   ├── 😊 sentiment-analysis/
-│   ├── 📑 text-classification/
-│   └── ✍️ text-summarization/
-├── 🦾 reinforcement-learning/
-│   └── 🤖 q-learning/
-└── 🌐 web-interfaces/
-    └── 📈 streamlit-apps/
+
+<table>
+<tr><th>📁 Kategori</th><th>📋 Projeler</th></tr>
+<tr>
+  <td>👁️ Computer Vision</td>
+  <td>
+    🖼️ Image Classification<br>
+    🎯 Object Detection<br>
+    👤 Face Recognition
+  </td>
+</tr>
+<tr>
+  <td>🤖 LLM Projects</td>
+  <td>
+    💬 Custom Chatbot<br>
+    🔎 RAG Implementation
+  </td>
+</tr>
+<tr>
+  <td>🔧 MCP Projects</td>
+  <td>
+    ⚙️ Basic MCP Server<br>
+    🖥️ Demo MCP Server<br>
+    📄 File MCP<br>
+    📧 MCP Mail
+  </td>
+</tr>
+<tr>
+  <td>📊 ML/DL Fundamentals</td>
+  <td>
+    🎓 Admission Predict<br>
+    🩺 Hyperparameter Optimization<br>
+    💉 Binary Classification<br>
+    🌊 Deep Learning Flow<br>
+    🏠 Housing Prices<br>
+    🖼️ CNN CIFAR-10<br>
+    🧠 Manual Neural Network<br>
+    🕸️ Neural Networks<br>
+    🐧 Penguins Classification<br>
+    🗑️ Transfer Learning
+  </td>
+</tr>
+</table>
 
 🚀 Hızlı Başlangıç
 
