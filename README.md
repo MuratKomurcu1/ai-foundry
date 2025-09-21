@@ -11,8 +11,8 @@ Bu repository, yapay zeka alanında öğrenmek isteyenler için kapsamlı, prati
 
 ## 📚 Proje İçeriği ve Yapısı
 
-ai-foundry-main/
-├── 👁️ computer-vision/
+ai-foundry-main/                                                                                                                                                                             
+├── 👁️ computer-vision/                             
 │   ├── 🖼️ image-classification/
 │   ├── 🎯 object-detection/
 │   └── 👤 face-recognition/
@@ -55,7 +55,7 @@ ai-foundry-main/
 Kurulum
 
 1. Repository'yi klonlayın 
-git clone https://github.com/MuratKomurcu1/ai-foundry-main.git
+git clone https://github.com/MuratKomurcu1/ai-foundry.git
 
 2. Proje dizinine gidin
 cd ai-foundry-main
