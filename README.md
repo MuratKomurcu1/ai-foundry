@@ -8,7 +8,7 @@
 
 Bu repository, yapay zeka alanında öğrenmek isteyenler için kapsamlı, pratik ve öğretici projeler içerir. Her seviyeden geliştiricinin faydalanabileceği gerçek dünya örnekleri ve detaylı açıklamalar sunar.
 
-📚 İçerik
+##📚 İçerik
 
  computer-vision/
 ├── 🖼️ Image Classification
